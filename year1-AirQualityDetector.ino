@@ -8,16 +8,11 @@ MQ135_XCR.h
 */
 #include <stdio.h>
 
-//LED
-const int PIN_RED   = 4;
-const int PIN_GREEN = 3;
-const int PIN_BLUE  = 2;
-
 // Dust Sensor
 int dustPin = 13;
 unsigned long duration;
 unsigned long starttime;
-unsigned long sampletime_ms = 10000;//sampe 30s ;
+unsigned long sampletime_ms = 30000;
 unsigned long lowpulseoccupancy = 0;
 float ratio = 0;
 float concentration = 0;
@@ -35,9 +30,6 @@ void setup() {
 
   // Setup pins
   pinMode(dustPin, INPUT);
-  pinMode(PIN_RED,   OUTPUT);
-  pinMode(PIN_GREEN, OUTPUT);
-  pinMode(PIN_BLUE,  OUTPUT);
 
   // Get the current time
   starttime = millis();
@@ -52,7 +44,6 @@ void loop() {
   if ((millis()-starttime) > sampletime_ms){
     airCheck();
   }
-
 }
 
 

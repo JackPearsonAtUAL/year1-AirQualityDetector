@@ -8,7 +8,7 @@
 
     Breadboard
 
-    LCD Screen Nokia 5110
+    OLED 0.96" Screen
 
 ## Language
     C++
@@ -23,7 +23,7 @@
 ## Hardware Process
 1. Integrating the Air Quality Click
 2. Integrating the Dust Sensor
-3. Integrating the Nokia Screen
+3. Integrating the Screen
 
 ## Programming Process
 1. Initial sensor: Air Quality Click

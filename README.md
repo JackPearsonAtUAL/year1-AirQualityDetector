@@ -64,7 +64,8 @@ Communication features
     This made my plans slightly harder, as the pins now need to connect to the JST, making a absurdly long cable connection. You can see how I've set up the sensor in `hardware_stage_2.jpg`
 3. **The change from Arduino Wifi R4 to and Arduino Nano**</br>
     It was at this point that I realised the Wifi R4 board was simply too large for 
-    the project. Therefore, I looked though the university's parts catalogue and found
+    the project. Therefore, I looked though the university's parts catalogue and found an Arduino Nano 
+    board. The Nano had another feature which really helped with my project; it connects directly into the breadboards. In an ideal situation I'd be using a PCB, but I couldn't get one of those in time. 
 4. **Integrating the Screen**</br>
 
 ### Programming

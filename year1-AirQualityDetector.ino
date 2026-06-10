@@ -51,13 +51,14 @@ void setup() {
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3D for 128x64
       Serial.println(F("SSD1306 allocation failed"));
       for(;;);
-    }
+  }
 
   display.clearDisplay();
 
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(0, 10);
+
   // Display static text
   display.println("Booting");
   display.display();
@@ -90,6 +91,7 @@ void airCheck(){
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(0, 10);
+  
   // Display static text
   display.println(_output);
   display.display();
@@ -97,37 +99,23 @@ void airCheck(){
 }
 
 void gasCheck(){
-    // put your main code here, to run repeatedly:
-    float ppm = airSensor.getPPM();
-    String airQuality = airSensor.getAirQuality();
+  // put your main code here, to run repeatedly:
+  float ppm = airSensor.getPPM();
+  String airQuality = airSensor.getAirQuality();
 
-    /*Serial.print("Harmful Gases (ppm): ");
-    Serial.print(ppm/10);
-    Serial.print("% | Air Quality: ");
-    Serial.println(airQuality); 
-    Serial.println('\n');*/
-    String gas = arduino::String(ppm/10);
-    gasPPM = "Toxic gas %: " + gas + '\n' + "Quality: " + airQuality;
+  String gas = arduino::String(ppm/10);
+  gasPPM = "Toxic gas %: " + gas + '\n' + "Quality: " + airQuality;
 }
 
 void particleCheck(){
   duration = pulseIn(dustPin, LOW);
-    lowpulseoccupancy = lowpulseoccupancy+duration;
+  lowpulseoccupancy = lowpulseoccupancy+duration;
 
-    ratio = lowpulseoccupancy/(sampletime_ms*10.0);  // Integer percentage 0=>100
-    concentration = 1.1*pow(ratio,3)-3.8*pow(ratio,2)+520*ratio+0.62; // using spec sheet curve
-    
-    /*Serial.print("Low Pulse Occupancy:");
-    Serial.print(lowpulseoccupancy);
-    Serial.print(", Ratio:");
-    Serial.print(ratio);
-    Serial.print(", Dust Concentration:");
-    Serial.println(concentration);
-    Serial.println('\n');*/
-    //String part = arduino::String(concentration);
-    particleAmount = "          Particle count: \n" + '\n' + arduino::String(concentration) + '\n';
+  ratio = lowpulseoccupancy/(sampletime_ms*10.0);  // Integer percentage 0=>100
+  concentration = 1.1*pow(ratio,3)-3.8*pow(ratio,2)+520*ratio+0.62; // using spec sheet curve
+  particleAmount = "          Particle count: \n" + '\n' + arduino::String(concentration) + '\n';
 
 
-    lowpulseoccupancy = 0;
-    starttime = millis();
+  lowpulseoccupancy = 0;
+  starttime = millis();
 }
